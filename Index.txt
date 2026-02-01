@@ -1,0 +1,450 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Literary Love Letter 📚</title>
+    <style>
+        :root {
+            --color-cream: #fef9f3;
+            --color-rose: #ff6b9d;
+            --color-deep-rose: #c9184a;
+            --color-sage: #8b9474;
+            --color-text: #2d2d2d;
+            --color-accent: #d4a373;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #fef9f3 0%, #ffe5ec 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .flower {
+            position: fixed;
+            font-size: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            animation: float-up 4s ease-in-out;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 10;
+            border: 3px solid var(--color-accent);
+        }
+
+        .book-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 20px;
+        }
+
+        .book-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: var(--color-deep-rose);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .subtitle {
+            color: var(--color-sage);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .quote-box {
+            background: linear-gradient(to right, #fff5f7, #fffaf5);
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid var(--color-rose);
+            border-radius: 8px;
+            font-style: italic;
+            color: var(--color-text);
+            line-height: 1.8;
+        }
+
+        .quote-author {
+            text-align: right;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--color-sage);
+        }
+
+        .message {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--color-text);
+            margin: 30px 0;
+        }
+
+        .book-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 25px 0;
+            align-items: center;
+        }
+
+        .book {
+            background: linear-gradient(135deg, var(--color-rose) 0%, var(--color-deep-rose) 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            width: 80%;
+            text-align: center;
+            transform: rotate(-1deg);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .book:nth-child(even) {
+            transform: rotate(1deg);
+            background: linear-gradient(135deg, var(--color-sage) 0%, #6b7a5a 100%);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, var(--color-rose), var(--color-deep-rose));
+            color: white;
+            flex: 1;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        #noBtn {
+            background: #e0e0e0;
+            color: var(--color-text);
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        #noBtn:hover {
+            background: #d0d0d0;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .success-message h2 {
+            color: var(--color-deep-rose);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .success-message p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--color-text);
+        }
+
+        .heart-burst {
+            font-size: 3rem;
+            margin: 20px 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .poem {
+            background: linear-gradient(to bottom, #fff5f7, #fffaf5);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-style: italic;
+            text-align: center;
+            line-height: 2;
+            color: var(--color-text);
+        }
+
+        .no-attempts {
+            text-align: center;
+            color: var(--color-sage);
+            font-size: 0.9rem;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="proposalContent">
+            <div class="book-header">
+                <div class="book-icon">📚💕</div>
+                <h1>A Chapter Awaits...</h1>
+                <p class="subtitle">A Literary Love Proposal</p>
+            </div>
+
+            <div class="quote-box">
+                "We read to know we are not alone."
+                <div class="quote-author">— C.S. Lewis</div>
+            </div>
+
+            <div class="message">
+                Like the powerful narratives penned by Khaled Hosseini, our story has been one of profound connection, redemption, and love. Just as his characters find strength in vulnerability, I find mine in you.
+            </div>
+
+            <div class="book-stack">
+                <div class="book">📖 Every conversation with you is a new chapter</div>
+                <div class="book">🌹 Your love for stories mirrors the depth of your soul</div>
+                <div class="book">✨ Like Virginia Woolf's prose, you're beautifully complex</div>
+                <div class="book">💫 Your feminist spirit inspires me every day</div>
+                <div class="book">🌸 Together, we could write the greatest love story</div>
+            </div>
+
+            <div class="poem">
+                In libraries of my heart, you're every page,<br>
+                Like Simone de Beauvoir, wise beyond your age.<br>
+                With flowers in your hair and books in your hand,<br>
+                Will you be my Valentine? Please understand—<br>
+                This isn't just a question, it's a plea,<br>
+                To write our love story, just you and me. 🌺
+            </div>
+
+            <div class="quote-box">
+                "The woman is not a completed reality, but rather a becoming."
+                <div class="quote-author">— Simone de Beauvoir</div>
+            </div>
+
+            <div class="message">
+                Will you turn the page with me this Valentine's Day?
+            </div>
+
+            <div class="buttons">
+                <button id="yesBtn">Yes! Let's write our story 📚💕</button>
+                <button id="noBtn">No</button>
+            </div>
+
+            <div class="no-attempts" id="attempts"></div>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            <div class="heart-burst">💐🌹🌺🌸🌷💐</div>
+            <h2>Our Story Begins! 📖💕</h2>
+            <p>Like the greatest love stories ever written, ours will be filled with adventure, growth, and endless chapters of joy.</p>
+            <div class="poem">
+                From Hosseini's redemption to Woolf's stream of consciousness,<br>
+                From Atwood's dystopias to Austen's romance,<br>
+                Every story pales in comparison to ours.<br>
+                Thank you for saying yes, my Valentine. 🌹<br>
+                <br>
+                Happy Valentine's Day, my love! 💕
+            </div>
+            <div class="heart-burst">📚✨💖✨📚</div>
+        </div>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const attemptsDiv = document.getElementById('attempts');
+        const proposalContent = document.getElementById('proposalContent');
+        const successMessage = document.getElementById('successMessage');
+
+        const flowerEmojis = ['🌸', '🌺', '🌹', '🌷', '🌼', '💐', '🏵️', '🌻'];
+        const cryingCats = ['😿', '😿', '😿'];
+        const messages = [
+            "But our story has just begun! 📖",
+            "Every great book has a happy ending... 💕",
+            "Like Hosseini's characters, give us a chance at redemption! 🌹",
+            "Virginia Woolf would say yes to love! 📚",
+            "The best chapters are yet to be written! ✨",
+            "Even the strongest feminist believes in love! 💪💕",
+            "Our narrative deserves a beautiful resolution! 🌺",
+            "Like 'A Thousand Splendid Suns,' let our love shine! ☀️",
+            "Every rom-com has obstacles before the happy ending! 🎬",
+            "Simone de Beauvoir chose Sartre... choose me! 💕"
+        ];
+
+        function createFlower() {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+            flower.style.left = Math.random() * 100 + '%';
+            flower.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(flower);
+            
+            setTimeout(() => {
+                flower.remove();
+            }, 4000);
+        }
+
+        setInterval(createFlower, 800);
+
+        noBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            noClickCount++;
+            
+            createFlower();
+            createFlower();
+            createFlower();
+            
+            // Create crying cat
+            const cat = document.createElement('div');
+            cat.className = 'flower';
+            cat.textContent = '😿';
+            cat.style.left = '50%';
+            cat.style.fontSize = '3rem';
+            cat.style.position = 'fixed';
+            cat.style.top = '20%';
+            cat.style.transform = 'translateX(-50%)';
+            cat.style.animation = 'none';
+            cat.style.opacity = '1';
+            cat.style.zIndex = '1000';
+            document.body.appendChild(cat);
+            
+            setTimeout(() => {
+                cat.style.transition = 'all 1s ease-out';
+                cat.style.opacity = '0';
+                cat.style.transform = 'translateX(-50%) translateY(50px) scale(0.5)';
+            }, 100);
+            
+            setTimeout(() => {
+                cat.remove();
+            }, 1100);
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            attemptsDiv.textContent = randomMessage;
+            attemptsDiv.style.color = 'var(--color-deep-rose)';
+            attemptsDiv.style.fontWeight = 'bold';
+            attemptsDiv.style.fontSize = '1.1rem';
+            
+            const currentSize = parseFloat(window.getComputedStyle(noBtn).fontSize);
+            const newSize = Math.max(currentSize - 2, 8);
+            noBtn.style.fontSize = newSize + 'px';
+            noBtn.style.padding = Math.max(15 - noClickCount * 2, 5) + 'px ' + Math.max(40 - noClickCount * 3, 10) + 'px';
+            
+            const yesFontSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (yesFontSize + 2) + 'px';
+            
+            noBtn.style.transform = 'translateX(' + (Math.random() * 40 - 20) + 'px) translateY(' + (Math.random() * 40 - 20) + 'px) rotate(' + (Math.random() * 30 - 15) + 'deg)';
+            
+            setTimeout(() => {
+                noBtn.style.transform = '';
+            }, 500);
+            
+            if (noClickCount >= 5) {
+                noBtn.textContent = 'No (Really?)';
+            }
+            if (noClickCount >= 10) {
+                noBtn.textContent = 'Still No?';
+                noBtn.style.opacity = '0.7';
+            }
+            if (noClickCount >= 15) {
+                noBtn.textContent = 'Maybe Yes?';
+                noBtn.style.opacity = '0.5';
+            }
+        });
+
+        yesBtn.addEventListener('click', function() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(createFlower, i * 100);
+            }
+            
+            proposalContent.style.display = 'none';
+            successMessage.style.display = 'block';
+            
+            document.body.style.background = 'linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%)';
+        });
+
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createFlower, i * 300);
+        }
+    </script>
+</body>
+</html>
